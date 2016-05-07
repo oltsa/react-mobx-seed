@@ -22,11 +22,18 @@ const common = {
     extension: ['', '.js', '.jsx'],
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel'],
-      include: path.join(__dirname, 'src'),
-    }],
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel?cacheDirectory'],
+        include: PATHS.app,
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style', 'css'],
+        include: PATHS.app,
+      },
+    ],
   },
 };
 
