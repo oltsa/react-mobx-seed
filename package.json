@@ -37,6 +37,8 @@
     "eslint-plugin-import": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^1.2.0",
     "eslint-plugin-react": "^5.0.1",
+    "html-webpack-plugin": "^2.16.1",
+    "html-webpack-template": "^4.0.0",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.12.0"

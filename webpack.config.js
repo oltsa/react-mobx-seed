@@ -1,5 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -51,6 +52,11 @@ if (TARGET === 'start' || !TARGET) {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+      new HtmlWebpackPlugin({
+        inject: false,
+        template: 'node_modules/html-webpack-template/index.ejs',
+        appMountId: 'app',
+      }),
     ],
   });
 }
