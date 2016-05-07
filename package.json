@@ -24,6 +24,7 @@
   "homepage": "https://github.com/inertum/react-mobx-seed#readme",
   "devDependencies": {
     "babel-core": "^6.8.0",
+    "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "eslint": "^2.9.0",
     "eslint-config-airbnb": "^8.0.0",
