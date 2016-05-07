@@ -4,7 +4,8 @@
   "description": "React Mobx Seed - basic boilerplate",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "start": "webpack-dev-server --content-base build"
   },
   "repository": {
     "type": "git",
