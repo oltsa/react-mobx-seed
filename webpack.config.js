@@ -1,7 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const CleanPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const pkg = require('./package.json');
 
 const TARGET = process.env.npm_lifecycle_event;
 
@@ -63,7 +67,50 @@ if (TARGET === 'start' || !TARGET) {
   });
 }
 
-if (TARGET === 'build') {
-  module.exports = merge(common, {});
+if (TARGET === 'build' || TARGET === 'stats') {
+  module.exports = merge(common, {
+    entry: {
+      vendor: Object.keys(pkg.dependencies),
+      style: PATHS.style,
+    },
+    output: {
+      path: PATHS.build,
+      // Output using entry name
+      filename: '[name].[chunkhash].js',
+      chunkFilename: '[chunkhash].js',
+    },
+    module: {
+      loaders: [
+        // Extract CSS during build
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract('style', 'css'),
+          include: PATHS.app,
+        },
+      ],
+    },
+    plugins: [
+      new CleanPlugin([PATHS.build]),
+      // Output extracted CSS to a file
+      new ExtractTextPlugin('[name].[chunkhash].css'),
+      // Extract vendor and manifest files
+      new webpack.optimize.CommonsChunkPlugin({
+        names: ['vendor', 'manifest'],
+      }),
+      // Setting DefinePlugin affects React library size!
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': '"production"',
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+        },
+      }),
+      new HtmlWebpackPlugin({
+        inject: false,
+        template: 'node_modules/html-webpack-template/index.ejs',
+        appMountId: 'app',
+      }),
+    ],
+  });
 }
-
