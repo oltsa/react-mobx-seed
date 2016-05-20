@@ -32,5 +32,5 @@ npm run build
 
 
 ###### Mentions
-[SurviveJS](https://survivejs.com/) for demystifying webpack
+[SurviveJS](https://survivejs.com/) for demystifying webpack<br />
 [Redux Easy Boilerplate](https://github.com/anorudes/redux-easy-boilerplate) check it out!
