@@ -1,6 +1,6 @@
-### React MobX Seed/Easy Boilerplate
-
 [![bitHound Overall Score](https://www.bithound.io/github/inertum/react-mobx-seed/badges/score.svg)](https://www.bithound.io/github/inertum/react-mobx-seed)
+---
+## React MobX Seed/Easy Boilerplate
 
 #### Dependencies
 * React/React-DOM 15.0.2 (hot reloading enabled)
