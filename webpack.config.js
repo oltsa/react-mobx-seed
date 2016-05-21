@@ -26,19 +26,49 @@ const common = {
     filename: 'app.js',
   },
   resolve: {
-    extension: ['', '.js', '.jsx'],
+    extension: ['', '.js', '.jsx', '.json', '.scss'],
+    modulesDirectories: ['node_modules', 'src'],
   },
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js[x]?$/,
         loaders: ['babel?cacheDirectory'],
         include: PATHS.app,
-      },
-      {
+      }, {
         test: /\.css$/,
         loaders: ['style', 'css'],
         include: PATHS.app,
+      }, {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'postcss', 'sass'],
+      }, {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff',
+      }, {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-woff2',
+      }, {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/octet-stream',
+      }, {
+        test: /\.otf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=application/font-otf',
+      }, {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file',
+      }, {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml',
+      }, {
+        test: /\.png$/,
+        loader: 'file?name=[name].[ext]',
+      }, {
+        test: /\.jpg$/,
+        loader: 'file?name=[name].[ext]',
+      }, {
+        test: /\.gif$/,
+        loader: 'file?name=[name].[ext]',
       },
     ],
   },

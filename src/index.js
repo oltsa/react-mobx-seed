@@ -1,38 +1,27 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
-const appState = new class AppState {
-  @observable timer = 0;
+import Timer from './models/Timer';
 
-  constructor() {
-    setInterval(() => {
-      appState.timer += 1;
-    }, 1000);
-  }
-
-  resetTimer() {
-    this.timer = 0;
-  }
-}();
+const AppTimer = new Timer();
 
 @observer
 class App extends Component {
   static propTypes = {
-    appState: PropTypes.object,
+    Timer: PropTypes.object,
   }
 
   onReset = () => {
-    this.props.appState.resetTimer();
+    this.props.Timer.resetTimer();
   }
 
   render() {
     return (
       <div>
         <button onClick={this.onReset}>
-          Seconds: {this.props.appState.timer}
+          Seconds: {this.props.Timer.timer}
         </button>
         <DevTools />
       </div>
@@ -40,4 +29,4 @@ class App extends Component {
   }
 }
 
-ReactDOM.render(<App appState={appState} />, document.getElementById('app'));
+ReactDOM.render(<App Timer={AppTimer} />, document.getElementById('app'));
