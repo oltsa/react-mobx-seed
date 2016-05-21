@@ -91,6 +91,7 @@ if (TARGET === 'build' || TARGET === 'stats') {
     },
     plugins: [
       new CleanPlugin([PATHS.build]),
+      new webpack.optimize.DedupePlugin(),
       // Output extracted CSS to a file
       new ExtractTextPlugin('[name].[chunkhash].css'),
       // Extract vendor and manifest files
