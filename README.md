@@ -12,8 +12,7 @@
 * ESLint 2.9.0 (with eslint-config-airbnb 9.0.0)
 
 #### Installation
-Tested with NodeJS 5.2.0 and 6.2.0 (current version)
-
+Tested with NodeJS 4.4.4 LTS/5.2.0/6.2.0
 ```
 git clone https://github.com/inertum/react-mobx-seed.git
 cd react-mobx-seed
