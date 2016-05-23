@@ -1,6 +1,6 @@
 {
   "name": "react-mobx-seed",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "React Mobx Seed - basic boilerplate",
   "engines": {
     "node": "6.2.0",
@@ -8,8 +8,8 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server"
+    "build": "webpack --config ./webpack/common.config.js",
+    "start": "webpack-dev-server --config ./webpack/common.config.js"
   },
   "repository": {
     "type": "git",
@@ -66,7 +66,7 @@
   },
   "dependencies": {
     "mobx": "2.1.7",
-    "mobx-react": "3.1.0",
+    "mobx-react": "3.2.0",
     "mobx-react-devtools": "4.0.5",
     "react": "15.1.0",
     "react-dom": "15.1.0"
