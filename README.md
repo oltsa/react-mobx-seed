@@ -7,9 +7,11 @@
 * MobX 2.1.7 (with binding and dev tools)
 
 #### Dev Dependencies
-* Webpack 1.13.0 (with webpack-dev-server, index.html generator)
+* Webpack 1.13.0 (with webpack-dev-server, build folder clean/rebuild)
+* Webpack loaders (style, css, postcss, sass, file, url)
 * Babel 6.8.0
 * ESLint 2.9.0 (with eslint-config-airbnb 9.0.0)
+
 
 #### Installation
 Tested with NodeJS 4.4.4 LTS/5.2.0/6.2.0

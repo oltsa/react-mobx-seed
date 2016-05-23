@@ -1,6 +1,6 @@
 {
   "name": "react-mobx-seed",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React Mobx Seed - basic boilerplate",
   "engines": {
     "node": "6.2.0",
@@ -25,7 +25,8 @@
     "seed",
     "boilerplate",
     "hot-reloading",
-    "sass"
+    "sass",
+    "strict versions"
   ],
   "author": "Ollipekka Jalonen",
   "license": "MIT",
