@@ -3,7 +3,7 @@
 ## React MobX Seed/Easy Boilerplate
 
 #### Dependencies
-* React/React-DOM 15.0.2 (hot reloading enabled)
+* React/React-DOM 15.1.0 (hot reloading enabled)
 * MobX 2.1.7 (with binding and dev tools)
 
 #### Dev Dependencies
