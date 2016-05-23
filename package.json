@@ -24,7 +24,8 @@
     "airbnb",
     "seed",
     "boilerplate",
-    "hot-reloading"
+    "hot-reloading",
+    "sass"
   ],
   "author": "Ollipekka Jalonen",
   "license": "MIT",
@@ -51,12 +52,15 @@
     "eslint-plugin-jsx-a11y": "1.2.2",
     "eslint-plugin-react": "5.1.1",
     "extract-text-webpack-plugin": "1.0.1",
+    "file-loader": "0.8.5",
     "html-webpack-plugin": "2.17.0",
     "html-webpack-template": "5.0.0",
     "node-sass": "3.7.0",
     "postcss-loader": "0.9.1",
+    "resolve-url-loader": "1.4.3",
     "sass-loader": "3.2.0",
     "style-loader": "0.13.1",
+    "url-loader": "0.5.7",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
     "webpack-merge": "0.12.0"

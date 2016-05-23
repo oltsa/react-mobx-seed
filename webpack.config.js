@@ -37,14 +37,6 @@ const common = {
         loaders: ['babel?cacheDirectory'],
         include: PATHS.app,
       }, {
-        test: /\.css$/,
-        loaders: ['style', 'css'],
-        include: PATHS.app,
-      }, {
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass'],
-        include: PATHS.app,
-      }, {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=application/font-woff',
       }, {
@@ -63,13 +55,7 @@ const common = {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=image/svg+xml',
       }, {
-        test: /\.png$/,
-        loader: 'file?name=[name].[ext]',
-      }, {
-        test: /\.jpg$/,
-        loader: 'file?name=[name].[ext]',
-      }, {
-        test: /\.gif$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'file?name=[name].[ext]',
       },
     ],
@@ -88,6 +74,19 @@ if (TARGET === 'start' || !TARGET) {
       stats: 'errors-only',
       host: process.env.HOST,
       port: process.env.PORT || 3000,
+    },
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: ['style', 'css'],
+          include: PATHS.app,
+        }, {
+          test: /\.scss$/,
+          loaders: ['style', 'css', 'postcss', 'sass'],
+          include: PATHS.app,
+        },
+      ],
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),

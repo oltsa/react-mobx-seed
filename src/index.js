@@ -9,7 +9,6 @@ import Timer from './models/Timer';
 // Global styles
 import { styles } from './styles/app.scss';
 
-
 const AppTimer = new Timer();
 
 @observer
@@ -25,6 +24,7 @@ class App extends Component {
   render() {
     return (
       <section className={`${styles}`}>
+        <h1>React MobX Boilerplate</h1>
         <button onClick={this.resetTimer}>
           Seconds elapsed: {this.props.Timer.timer}
         </button>
