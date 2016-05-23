@@ -1,4 +1,4 @@
-[![bitHound Overall Score](https://www.bithound.io/github/inertum/react-mobx-seed/badges/score.svg)](https://www.bithound.io/github/inertum/react-mobx-seed)
+[![bitHound Overall Score](https://www.bithound.io/github/inertum/react-mobx-seed/badges/score.svg)](https://www.bithound.io/github/inertum/react-mobx-seed)[![bitHound Dependencies](https://www.bithound.io/github/inertum/react-mobx-seed/badges/dependencies.svg)](https://www.bithound.io/github/inertum/react-mobx-seed/develop/dependencies/npm)[![bitHound Dev Dependencies](https://www.bithound.io/github/inertum/react-mobx-seed/badges/devDependencies.svg)](https://www.bithound.io/github/inertum/react-mobx-seed/develop/dependencies/npm)[![bitHound Code](https://www.bithound.io/github/inertum/react-mobx-seed/badges/code.svg)](https://www.bithound.io/github/inertum/react-mobx-seed)
 ---
 ## React MobX Seed/Easy Boilerplate
 
