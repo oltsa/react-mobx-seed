@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
@@ -26,8 +27,8 @@ const common = {
     filename: 'app.js',
   },
   resolve: {
-    extension: ['', '.js', '.jsx', '.json', '.scss'],
-    modulesDirectories: ['node_modules', 'src'],
+    extensions: ['', '.jsx', '.js', '.json', '.scss'],
+    modulesDirectories: ['node_modules', PATHS.app],
   },
   module: {
     loaders: [
@@ -42,6 +43,7 @@ const common = {
       }, {
         test: /\.scss$/,
         loaders: ['style', 'css', 'postcss', 'sass'],
+        include: PATHS.app,
       }, {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=application/font-woff',
@@ -72,6 +74,7 @@ const common = {
       },
     ],
   },
+  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
 };
 
 if (TARGET === 'start' || !TARGET) {
@@ -92,6 +95,7 @@ if (TARGET === 'start' || !TARGET) {
         inject: false,
         template: 'node_modules/html-webpack-template/index.ejs',
         appMountId: 'app',
+        title: 'React Mobx Seed / Boilerplate',
       }),
     ],
   });
@@ -116,6 +120,10 @@ if (TARGET === 'build' || TARGET === 'stats') {
           test: /\.css$/,
           loader: ExtractTextPlugin.extract('style', 'css'),
           include: PATHS.app,
+        }, {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
+          include: PATHS.app,
         },
       ],
     },
@@ -135,12 +143,16 @@ if (TARGET === 'build' || TARGET === 'stats') {
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false,
+          dead_code: true,
+          unused: true,
+          drop_console: true,
         },
       }),
       new HtmlWebpackPlugin({
         inject: false,
         template: 'node_modules/html-webpack-template/index.ejs',
         appMountId: 'app',
+        title: 'React Mobx Seed - Easy Boilerplate',
       }),
     ],
   });

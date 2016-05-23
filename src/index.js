@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
+// Models
 import Timer from './models/Timer';
+
+// Global styles
+import { styles } from './styles/app.scss';
+
 
 const AppTimer = new Timer();
 
@@ -13,18 +18,18 @@ class App extends Component {
     Timer: PropTypes.object,
   }
 
-  onReset = () => {
+  resetTimer = () => {
     this.props.Timer.resetTimer();
   }
 
   render() {
     return (
-      <div>
-        <button onClick={this.onReset}>
-          Seconds: {this.props.Timer.timer}
+      <section className={`${styles}`}>
+        <button onClick={this.resetTimer}>
+          Seconds elapsed: {this.props.Timer.timer}
         </button>
         <DevTools />
-      </div>
+      </section>
     );
   }
 }

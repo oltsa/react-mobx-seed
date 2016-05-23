@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/inertum/react-mobx-seed#readme",
   "devDependencies": {
+    "autoprefixer": "6.3.6",
     "babel-core": "6.9.0",
     "babel-eslint": "6.0.4",
     "babel-loader": "6.2.4",
@@ -43,6 +44,7 @@
     "babel-preset-react-hmre": "1.1.1",
     "babel-preset-stage-1": "6.5.0",
     "clean-webpack-plugin": "0.1.9",
+    "css-loader": "0.23.1",
     "eslint": "2.10.2",
     "eslint-config-airbnb": "9.0.1",
     "eslint-plugin-import": "1.8.0",
@@ -51,6 +53,10 @@
     "extract-text-webpack-plugin": "1.0.1",
     "html-webpack-plugin": "2.17.0",
     "html-webpack-template": "5.0.0",
+    "node-sass": "3.7.0",
+    "postcss-loader": "0.9.1",
+    "sass-loader": "3.2.0",
+    "style-loader": "0.13.1",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1",
     "webpack-merge": "0.12.0"
