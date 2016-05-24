@@ -8,6 +8,8 @@ const parts = require('./lib/parts');
 const development = require('./dev.config');
 const production = require('./prod.config');
 
+const pkg = require('../package.json');
+
 const TARGET = process.env.npm_lifecycle_event;
 
 const PATHS = {
@@ -23,7 +25,6 @@ const common = {
   },
   output: {
     path: PATHS.build,
-    filename: 'app.js',
   },
   resolve: {
     extensions: ['', '.jsx', '.js', '.json', '.scss'],
@@ -70,11 +71,21 @@ switch (process.env.npm_lifecycle_event) {
       common,
       {
         devtool: 'source-map',
+        output: {
+          path: PATHS.build,
+          filename: '[name].[chunkhash].js',
+          chunkFilename: '[chunkhash].js',
+        },
       },
+      parts.clean(PATHS.build),
       parts.setFreeVariable(    // uses webpack define plugin to set NODE_ENV to production
         'process.env.NODE_ENV', // effects size of builds in some packages (e.g react)
         'production'            // takes key/value pair
       ),
+      parts.extractBundle({
+        name: 'vendor',
+        entries: Object.keys(pkg.dependencies),
+      }),
       parts.minify(),           // minifies JS output, see lib/parts.js for more configurations
       parts.extractStyles(PATHS.app), // extracts scss/scss into .css file
       production

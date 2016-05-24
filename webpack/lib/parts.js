@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.devServer = options => ({
   devServer: {
@@ -72,3 +73,26 @@ exports.setFreeVariable = (key, value) => {
     ],
   };
 };
+
+exports.extractBundle = options => {
+  const entry = {};
+  entry[options.name] = options.entries;
+
+  return {
+    entry,
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({
+        names: [options.name, 'manifest'],
+        minChunks: Infinity,
+      }),
+    ],
+  };
+};
+
+exports.clean = path => ({
+  plugins: [
+    new CleanWebpackPlugin([path], {
+      root: process.cwd(),
+    }),
+  ],
+});
