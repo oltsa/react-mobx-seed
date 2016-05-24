@@ -36,7 +36,6 @@ exports.setupStyles = paths => ({
 exports.extractStyles = paths => ({
   module: {
     loaders: [
-      // Extract CSS during build
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style', 'css'),
@@ -49,3 +48,27 @@ exports.extractStyles = paths => ({
     ],
   },
 });
+
+exports.minify = () => ({
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        dead_code: true,
+        unused: true,
+        drop_console: true,
+      },
+    }),
+  ],
+});
+
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = JSON.stringify(value);
+
+  return {
+    plugins: [
+      new webpack.DefinePlugin(env),
+    ],
+  };
+};

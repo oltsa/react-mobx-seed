@@ -31,18 +31,6 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
     }),
-    // Setting DefinePlugin affects React library size!
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"',
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        dead_code: true,
-        unused: true,
-        drop_console: true,
-      },
-    }),
     new HtmlWebpackPlugin({
       inject: false,
       template: 'node_modules/html-webpack-template/index.ejs',

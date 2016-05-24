@@ -71,7 +71,12 @@ switch (process.env.npm_lifecycle_event) {
       {
         devtool: 'source-map',
       },
-      parts.extractStyles(PATHS.app),
+      parts.setFreeVariable(    // uses webpack define plugin to set NODE_ENV to production
+        'process.env.NODE_ENV', // effects size of builds in some packages (e.g react)
+        'production'            // takes key/value pair
+      ),
+      parts.minify(),           // minifies JS output, see lib/parts.js for more configurations
+      parts.extractStyles(PATHS.app), // extracts scss/scss into .css file
       production
     );
     break;
@@ -81,10 +86,14 @@ switch (process.env.npm_lifecycle_event) {
       {
         devtool: 'eval-source-map',
       },
-      parts.devServer({
-        host: process.env.HOST,
-        port: process.env.PORT,
+      parts.devServer({         // adds dev server configurations
+        host: process.env.HOST, // defines host, fallbacks to localhost
+        port: process.env.PORT, // defines port, fallbacks to 3000
       }),
+      parts.setFreeVariable(    // uses webpack define plugin to set NODE_ENV to development
+        'process.env.NODE_ENV', // effects size of builds in some packages (e.g react)
+        'development'           // takes key/value pair
+      ),
       parts.setupStyles(PATHS.app),
       development
     );
