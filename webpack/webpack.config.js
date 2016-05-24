@@ -68,6 +68,9 @@ switch (process.env.npm_lifecycle_event) {
   case 'build':
     config = merge(
       common,
+      {
+        devtool: 'source-map',
+      },
       parts.extractStyles(PATHS.app),
       production
     );
@@ -75,6 +78,9 @@ switch (process.env.npm_lifecycle_event) {
   default:
     config = merge(
       common,
+      {
+        devtool: 'eval-source-map',
+      },
       parts.devServer({
         host: process.env.HOST,
         port: process.env.PORT,
