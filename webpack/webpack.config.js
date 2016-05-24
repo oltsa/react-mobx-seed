@@ -1,9 +1,12 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
+const validate = require('webpack-validator');
 
-const development = require('./dev.config.js');
-const production = require('./prod.config.js');
+const parts = require('./lib/parts');
+
+const development = require('./dev.config');
+const production = require('./prod.config');
 
 const TARGET = process.env.npm_lifecycle_event;
 
@@ -59,10 +62,26 @@ const common = {
   postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
 };
 
-if (TARGET === 'start' || !TARGET) {
-  module.exports = merge(common, development);
+let config;
+
+switch (process.env.npm_lifecycle_event) {
+  case 'build':
+    config = merge(
+      common,
+      parts.extractStyles(PATHS.app),
+      production
+    );
+    break;
+  default:
+    config = merge(
+      common,
+      parts.devServer({
+        host: process.env.HOST,
+        port: process.env.PORT,
+      }),
+      parts.setupStyles(PATHS.app),
+      development
+    );
 }
 
-if (TARGET === 'build' || TARGET === 'stats') {
-  module.exports = merge(common, production);
-}
+module.exports = validate(config);

@@ -22,20 +22,6 @@ module.exports = {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[chunkhash].js',
   },
-  module: {
-    loaders: [
-      // Extract CSS during build
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css'),
-        include: PATHS.app,
-      }, {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass'),
-        include: PATHS.app,
-      },
-    ],
-  },
   plugins: [
     new CleanPlugin([PATHS.build], { root: PATHS.root }),
     new webpack.optimize.DedupePlugin(),
