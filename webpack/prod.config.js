@@ -1,14 +1,13 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   plugins: [
     new webpack.optimize.DedupePlugin(),
-    new ExtractTextPlugin('[name].[chunkhash].css'),
     new HtmlWebpackPlugin({
       inject: false,
-      template: 'node_modules/html-webpack-template/index.ejs',
+      template: 'templates/index.ejs',
       appMountId: 'app',
       title: 'React Mobx Seed - Easy Boilerplate',
     }),

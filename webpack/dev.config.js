@@ -4,7 +4,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       inject: false,
-      template: 'node_modules/html-webpack-template/index.ejs',
+      template: 'templates/index.ejs',
       appMountId: 'app',
       title: 'React Mobx Seed / Boilerplate',
     }),

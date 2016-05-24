@@ -48,6 +48,9 @@ exports.extractStyles = paths => ({
       },
     ],
   },
+  plugins: [
+    new ExtractTextPlugin('styles.[chunkhash].css'),
+  ],
 });
 
 exports.minify = () => ({

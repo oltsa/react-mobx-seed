@@ -87,7 +87,7 @@ switch (process.env.npm_lifecycle_event) {
         entries: Object.keys(pkg.dependencies),
       }),
       parts.minify(),           // minifies JS output, see lib/parts.js for more configurations
-      parts.extractStyles(PATHS.app), // extracts scss/scss into .css file
+      parts.extractStyles(PATHS.app), // extracts and bundles css/scss - filename defined in lib
       production
     );
     break;
