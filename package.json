@@ -1,6 +1,6 @@
 {
   "name": "react-mobx-seed",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "React Mobx Seed - basic boilerplate",
   "engines": {
     "node": "6.2.0",

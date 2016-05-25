@@ -8,11 +8,15 @@ const parts = require('./lib/parts'); // modular webpack config imports
 const pkg = require('../package.json');
 
 const TARGET = process.env.npm_lifecycle_event;
+const ROOT = process.cwd();
 
 const PATHS = {
-  app: path.join(__dirname, '../src'), // app entry point
-  build: path.join(__dirname, '../build'), // dist/build folder
-  template: path.join(__dirname, '../templates', 'index.ejs'), // used to generate HTML
+  app: path.join(ROOT, 'src'), // app entry point
+  build: path.join(ROOT, 'build'), // dist/build folder
+  template: path.join(ROOT, 'templates', 'index.ejs'), // used to generate HTML
+  styles: [
+    path.join(ROOT, 'src'),
+  ],
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -26,7 +30,7 @@ const common = {
   },
   resolve: {
     extensions: ['', '.jsx', '.js', '.json', '.scss'],
-    modulesDirectories: ['node_modules', PATHS.app],
+    modulesDirectories: ['node_modules'],
   },
   module: {
     loaders: [
@@ -85,7 +89,7 @@ switch (process.env.npm_lifecycle_event) {
         entries: Object.keys(pkg.dependencies), // collect deps from package.json for vendor bundle
       }),
       parts.minify(),           // minifies JS output, see lib/parts.js for more configurations
-      parts.extractStyles(PATHS.app), // extracts and bundles css/scss - filename defined in lib
+      parts.extractStyles(PATHS.styles), // extracts and bundles css/scss - filename defined in lib
       parts.generateHTML(PATHS.template)
     );
     break;
@@ -103,7 +107,7 @@ switch (process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV', // effects size of builds in some packages (e.g react)
         'development'           // takes key/value pair
       ),
-      parts.setupStyles(PATHS.app),
+      parts.setupStyles(PATHS.styles),
       parts.generateHTML(PATHS.template)
     );
 }
