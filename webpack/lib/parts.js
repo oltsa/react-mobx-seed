@@ -108,7 +108,6 @@ exports.generateHTML = (template) => ({
       inject: false,
       template,
       appMountId: 'app',
-      title: 'React Mobx Easy Boilerplate',
     }),
   ],
 });
