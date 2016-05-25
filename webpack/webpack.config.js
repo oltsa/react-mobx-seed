@@ -3,18 +3,16 @@ const autoprefixer = require('autoprefixer');
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
 
-const parts = require('./lib/parts');
-
-const development = require('./dev.config');
-const production = require('./prod.config');
+const parts = require('./lib/parts'); // modular webpack config imports
 
 const pkg = require('../package.json');
 
 const TARGET = process.env.npm_lifecycle_event;
 
 const PATHS = {
-  app: path.join(__dirname, '../src'),
-  build: path.join(__dirname, '../build'),
+  app: path.join(__dirname, '../src'), // app entry point
+  build: path.join(__dirname, '../build'), // dist/build folder
+  template: path.join(__dirname, '../templates', 'index.ejs'), // used to generate HTML
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -84,11 +82,11 @@ switch (process.env.npm_lifecycle_event) {
       ),
       parts.extractBundle({
         name: 'vendor',
-        entries: Object.keys(pkg.dependencies),
+        entries: Object.keys(pkg.dependencies), // collect deps from package.json for vendor bundle
       }),
       parts.minify(),           // minifies JS output, see lib/parts.js for more configurations
       parts.extractStyles(PATHS.app), // extracts and bundles css/scss - filename defined in lib
-      production
+      parts.generateHTML(PATHS.template)
     );
     break;
   default:
@@ -106,7 +104,7 @@ switch (process.env.npm_lifecycle_event) {
         'development'           // takes key/value pair
       ),
       parts.setupStyles(PATHS.app),
-      development
+      parts.generateHTML(PATHS.template)
     );
 }
 

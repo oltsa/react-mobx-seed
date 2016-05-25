@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 exports.devServer = options => ({
   devServer: {
@@ -55,6 +56,7 @@ exports.extractStyles = paths => ({
 
 exports.minify = () => ({
   plugins: [
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
@@ -99,3 +101,15 @@ exports.clean = path => ({
     }),
   ],
 });
+
+exports.generateHTML = (template) => ({
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: false,
+      template,
+      appMountId: 'app',
+      title: 'React Mobx Easy Boilerplate',
+    }),
+  ],
+});
+
